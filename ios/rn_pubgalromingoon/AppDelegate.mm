@@ -1,3 +1,4 @@
+#import <Firebase.h>
 #import "AppDelegate.h"
 
 #import <React/RCTBundleURLProvider.h>
@@ -6,6 +7,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+  #ifdef FB_SONARKIT_ENABLED
+    InitializeFlipper(application);
+  #endif
+
+  if ([FIRApp defaultApp] == nil) {
+    [FIRApp configure];
+  }
   self.moduleName = @"rn_pubgalromingoon";
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
